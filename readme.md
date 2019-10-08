@@ -1,0 +1,1 @@
+在九月份的时候离职了，然后在找工作的过程中深深得感受到了自己的不足，所以觉得每天至少刷一题leecode，刷题顺序参考github上面的大神https://github.com/azl397985856/leetcode
