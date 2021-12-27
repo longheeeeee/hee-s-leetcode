@@ -6,30 +6,49 @@
 
 // @lc code=start
 
-// dp[n]为凑成金额为n的最少硬币个数
-// 设i为coins的其中一个
-// dp[n-i] = dp[n] -1
-// 边界条件
-// dp[0] = 0
+// 20211227
+// dp数组
+// dp[i] = min(dp[i - coin])
 
-/**
- * @param {number[]} coins
- * @param {number} amount
- * @return {number}
- */
 var coinChange = function(coins, amount) {
-  const dp = Array(amount + 1).fill(Number.MAX_SAFE_INTEGER)
+  const dp = new Array(amount+1).fill(Infinity)
   dp[0] = 0
-  for(let n = 1; n <= amount; n++) {
-    coins.forEach(coin => {
-      if (n - coin < 0) return
-      const nCount = dp[n - coin] +1
-      dp[n] > nCount  && (dp[n] = nCount)
-    })
+  for (let i = 1; i <= amount; i++) {
+    let min = Infinity
+    for (let j = 0; j < coins.length; j++) {
+      const coin = coins[j]
+      if (i < coin) continue
+      if (min > dp[i - coin]) min = dp[i - coin]
+    }
+    if (min !== Infinity) dp[i] = min + 1
   }
-  console.log(dp)
-  return dp[amount] === Number.MAX_SAFE_INTEGER ? -1 : dp[amount]
+  return dp[amount] === Infinity ? -1 : dp[amount]
 };
+
+// // dp[n]为凑成金额为n的最少硬币个数
+// // 设i为coins的其中一个
+// // dp[n-i] = dp[n] -1
+// // 边界条件
+// // dp[0] = 0
+
+// /**
+//  * @param {number[]} coins
+//  * @param {number} amount
+//  * @return {number}
+//  */
+// var coinChange = function(coins, amount) {
+//   const dp = Array(amount + 1).fill(Number.MAX_SAFE_INTEGER)
+//   dp[0] = 0
+//   for(let n = 1; n <= amount; n++) {
+//     coins.forEach(coin => {
+//       if (n - coin < 0) return
+//       const nCount = dp[n - coin] +1
+//       dp[n] > nCount  && (dp[n] = nCount)
+//     })
+//   }
+//   console.log(dp)
+//   return dp[amount] === Number.MAX_SAFE_INTEGER ? -1 : dp[amount]
+// };
 
 
 // /**
