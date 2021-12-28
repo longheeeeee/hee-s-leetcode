@@ -10,8 +10,9 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    const visited = []
-    const res = []
+    const res = [] // 结果
+    const visited = [] // 已访问
+
     const track = (nums, visited) => {
         if (visited.length === nums.length) {
             res.push(JSON.parse(JSON.stringify(visited)))
