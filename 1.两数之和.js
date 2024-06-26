@@ -10,6 +10,17 @@
  * @param {number} target
  * @return {number[]}
  */
+var twoSum = function(nums, target) {
+  const map = {}
+  for (let i = 0; i < nums.length; i++) {
+    const element = nums[i];
+    if (map[target - element] !== undefined) {
+      return [i, map[target - element]]
+    }
+    map[element] = i 
+  }
+  return false
+}
 // var twoSum = function(nums, target) {
 //   for (let i = 0; i < nums.length; i++) {
 //     for (let j = i + 1; j < nums.length; j++) {

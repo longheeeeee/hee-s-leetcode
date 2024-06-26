@@ -19,6 +19,38 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
+  let a = headA
+  let b = headB
+  if (!a || !b) {
+    return null
+  }
+  // 任意一个跑到底部
+  while(a.next && b.next) {
+    a = a.next
+    b = b.next
+  }
+  const afast = !a.next
+  // 计算差值
+  let diff = 0
+  while(afast ? b.next : a.next) {
+    afast ? (b = b.next) : (a = a.next)
+    diff++
+  }
+  // console.log('diff: ', diff)
+  // 去除差值
+  a = headA
+  b = headB
+  while(diff > 0) {
+    afast ? (b = b.next) : (a = a.next)
+    diff--
+  }
+  while(a !== b && a.next && b.next) {
+    a = a.next
+    b = b.next
+  }
+  return a === b ? a : null
+}
+var getIntersectionNode = function(headA, headB) {
   if (!headA || !headB) return null
   const oriA = headA, oriB = headB
   let a = false, b = false
