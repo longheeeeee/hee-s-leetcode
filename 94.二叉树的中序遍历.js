@@ -17,6 +17,25 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+var inorderTraversal = function(root) {
+  if (!root) {
+    return []
+  }
+  let cur = root
+  const stack = []
+  const res = []
+  while(stack.length > 0 || cur) {
+    if (cur) {
+      stack.push(cur)
+      cur = cur.left
+      continue
+    }
+    cur = stack.pop()
+    res.push(cur.val)
+    cur = cur.right
+  }
+  return res
+}
 var inorderTraversal = function(root, res = []) {
   if (!root) return res
   root.left && inorderTraversal(root.left, res)
