@@ -18,6 +18,18 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
+  if (!root) {
+    return root
+  }
+  const dfs = (node) => {
+    [node.left, node.right] = [node.right, node.left]
+    node.left && dfs(node.left)
+    node.right && dfs(node.right)
+  }
+  dfs(root)
+  return root
+}
+var invertTree = function(root) {
   if (!root) return null
   let tmp = root.left
   root.left = invertTree(root.right)

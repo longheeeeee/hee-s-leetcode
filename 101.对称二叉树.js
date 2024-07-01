@@ -18,6 +18,19 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
+  if (!root) {
+    return true
+  }
+  const dfs = (left, right) => {
+    if (!left && !right) return true
+    if (!left || !right || left.val !== right.val) return false
+    if (!dfs(left.left, right.right)) return false
+    if (!dfs(left.right, right.left)) return false
+    return true
+  }
+  return dfs(root.left, root.right)
+}
+var isSymmetric = function(root) {
   if (!root) return true
   const dfs = (left, right) => {
       if (!left && !right) return true
