@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=78 lang=javascript
+ * @lc app=leetcode.cn id=90 lang=javascript
  *
- * [78] 子集
+ * [90] 子集 II
  */
 
 // @lc code=start
@@ -9,7 +9,8 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsets = function(nums) {
+var subsetsWithDup = function(nums) {
+  nums.sort((a, b) => a - b)
 	const res = []
 	const track = (start, path) => {
 		res.push([...path])
@@ -17,6 +18,7 @@ var subsets = function(nums) {
 			return
 		}
 		for (let i = start; i < nums.length; i++) {
+      if (i > start && nums[i] === nums[i - 1]) continue
 			path.push(nums[i])
 			track(i + 1, path)
 			path.pop()
@@ -24,15 +26,6 @@ var subsets = function(nums) {
 	}
 	track(0, [])
 	return res
-}
-var subsets = function(nums) {
-    if (nums.length === 1) return [[], [nums[0]]]
-    const n = nums.pop()
-    const sum = subsets(nums)
-    console.log(sum)
-    return sum
-    .map((item) => [...item, n])
-    .concat(sum)
 };
 // @lc code=end
 
