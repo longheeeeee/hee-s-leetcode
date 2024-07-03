@@ -22,9 +22,15 @@ var isSymmetric = function(root) {
     return true
   }
   const dfs = (left, right) => {
+    // 主要判断逻辑
+    // 双指针，对比外侧和内侧
     if (!left && !right) return true
+    // 单边为空，或者值不一致
     if (!left || !right || left.val !== right.val) return false
+    // 下面只是单纯传递
+    // 对比外侧是否相同
     if (!dfs(left.left, right.right)) return false
+    // 对比里侧是否相同
     if (!dfs(left.right, right.left)) return false
     return true
   }
