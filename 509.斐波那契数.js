@@ -10,6 +10,27 @@
  * @return {number}
  */
 var fib = function(n) {
+  if (n === 0) return 0
+  const dp = []
+  let p1 = 0
+  let p2 = 1
+  for (let i = 2; i <= n; i++) {
+    let temp = p1 + p2
+    p1 = p2
+    p2 = temp
+  }
+  return p2
+}
+var fib = function(n) {
+  const dp = []
+  dp[0] = 0
+  dp[1] = 1
+  for (let i = 2; i <= n; i++) {
+    dp[i] = dp[i-1] + dp[i-2]
+  }
+  return dp[n]
+}
+var fib = function(n) {
     if (n === 0) return 0
     let n1 = 1, n2 = 1
     let tmp
