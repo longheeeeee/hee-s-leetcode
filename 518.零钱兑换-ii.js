@@ -10,6 +10,57 @@
  * @param {number[]} coins
  * @return {number}
  */
+var change = function(amount, coins) {
+  // dp[i] 凑成i的组合数
+  const dp = new Array(amount + 1).fill(0)
+  dp[0] = 1
+  /**
+   * 两种遍历方法
+   * 1.先遍历背包
+   *    在容量为i的背包，尝试分别使用不同硬币，此时是排列数，拿1/2和拿2/1会相加
+   * 2. 先遍历硬币
+   *    使用1块钱的硬币，组成容量为i的背包，此时是组合数，只会先拿1再拿2
+   */
+  coins.forEach(c => {
+    for (let i = 0; i <= amount; i++) {
+      // 记得这里要判断一下能不能加
+      i - c >= 0 && (dp[i] = dp[i - c] + dp[i])
+    }
+  })
+  // console.log(dp)
+  return dp[amount]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // var change = function(amount, coins) {
 //   // dp[i][j]代表了，使用i个硬币能凑成金额j的组合数为dp[i][j]
